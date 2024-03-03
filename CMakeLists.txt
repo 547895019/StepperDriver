@@ -18,7 +18,7 @@ set(srcs
 set(includedirs src/)
 set(priv_includes)
 set(requires)
-set(priv_requires arduino-esp32)
+set(priv_requires)
 
 idf_component_register(INCLUDE_DIRS ${includedirs} PRIV_INCLUDE_DIRS ${priv_includes} SRCS ${srcs} REQUIRES ${requires} PRIV_REQUIRES ${priv_requires})
 

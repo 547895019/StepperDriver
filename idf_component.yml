@@ -1,3 +1,8 @@
 description: "A4988, DRV8825, DRV8834, DRV8880 and generic two-pin stepper motor driver library"
 url: "https://github.com/547895019/StepperDriver.git"
 license: "LGPL-2.1"
+dependencies:
+    arduino/arduino-esp32:
+        public: true
+        git: https://github.com/547895019/arduino-esp32.git
+        version: '3.0.0-alpha2-dev'
