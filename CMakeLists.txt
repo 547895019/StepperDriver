@@ -9,10 +9,10 @@ set(srcs
   src/A4988.cpp
   src/BasicStepperDriver.cpp
   src/DRV8825.cpp
-  src/DRV8834.c
-  src/DRV8880.c
-  src/MultiDriver.c
-  src/SyncDriver.c
+  src/DRV8834.cpp
+  src/DRV8880.cpp
+  src/MultiDriver.cpp
+  src/SyncDriver.cpp
   )
 
 set(includedirs src/)
