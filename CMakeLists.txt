@@ -13,7 +13,6 @@ set(srcs
   src/DRV8880.cpp
   src/MultiDriver.cpp
   src/SyncDriver.cpp
-  src/TimerStepperDriver.cpp
   )
 
 set(includedirs src/)
