@@ -49,6 +49,8 @@ public:
             while (micros() - start_us < delay_us);
         }
     }
+	void startAction(void);
+	void pulseAction(void);
 
 private:
     // calculation remainder to be fed into successive steps to increase accuracy (Atmel DOC8017)
@@ -93,7 +95,7 @@ protected:
     long steps_to_brake;    // steps needed to come to a full stop
     long step_pulse;        // step pulse duration (microseconds)
     long cruise_step_pulse; // step pulse duration for constant speed section (max rpm)
-
+	unsigned m;
     // DIR pin state
     short dir_state;
 

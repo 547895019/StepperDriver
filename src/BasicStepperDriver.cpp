@@ -309,6 +309,56 @@ void BasicStepperDriver::calcStepPulse(void){
  * Yield to step control
  * Toggle step and return time until next change is needed (micros)
  */
+static void _startAction_static_callback(void* arg)
+{
+  BasicStepperDriver* _this = reinterpret_cast<BasicStepperDriver*>(arg);
+  if (_this)
+    _this->startAction();
+}
+
+static void _pulseAction_static_callback(void* arg)
+{
+  BasicStepperDriver* _this = reinterpret_cast<BasicStepperDriver*>(arg);
+  if (_this)
+    _this->pulseAction();
+}
+
+void BasicStepperDriver::startAction(void){
+    if (steps_remaining > 0){
+        /*
+         * DIR pin is sampled on rising STEP edge, so it is set first
+         */
+        digitalWrite(dir_pin, dir_state);
+        digitalWrite(step_pin, HIGH);
+		m = micros();
+		//next pulseAction
+		timer.attach_us(step_high_min,_pulseAction_static_callback,(void*)this);
+    } else {
+        // end of move
+		timer.detach();
+        last_action_end = 0;
+        next_action_interval = 0;
+    }
+}
+
+void BasicStepperDriver::pulseAction(void){
+    if (steps_remaining > 0){
+		digitalWrite(step_pin, LOW);
+        unsigned long pulse = step_pulse; // save value because calcStepPulse() will overwrite it
+        calcStepPulse();
+        // account for calcStepPulse() execution time; sets ceiling for max rpm on slower MCUs
+        last_action_end = micros();
+        m = last_action_end - m;
+        next_action_interval = (pulse > m) ? pulse - m : 1;
+		//next startAction
+		timer.attach_us(next_action_interval,_startAction_static_callback,(void*)this);
+    } else {
+        // end of move
+		timer.detach();
+        last_action_end = 0;
+        next_action_interval = 0;
+    }
+}
 long BasicStepperDriver::nextAction(void){
     if (steps_remaining > 0){
         delayMicros(next_action_interval, last_action_end);
