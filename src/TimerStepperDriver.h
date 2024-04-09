@@ -50,7 +50,7 @@ public:
             while (micros() - start_us < delay_us);
         }
     }
-
+	void startAction(void);
 private:
     // calculation remainder to be fed into successive steps to increase accuracy (Atmel DOC8017)
     long rest;
@@ -102,7 +102,7 @@ protected:
 
     // this is internal because one can call the start methods while CRUISING to get here
     void alterMove(long steps);
-
+	void endAction(void);
 private:
     // microstep range (1, 16, 32 etc)
     static const short MAX_MICROSTEP = 128;
