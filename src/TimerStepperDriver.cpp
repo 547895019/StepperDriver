@@ -319,6 +319,7 @@ void TimerStepperDriver::startAction(void){
 		timer.attach_us(1,&TimerStepperDriver::endAction);
     } else {
         // end of move
+		timer.detach();
         last_action_end = 0;
         next_action_interval = 0;
     }
@@ -338,6 +339,7 @@ void TimerStepperDriver::endAction(void){
 		timer.attach_us(next_action_interval,&TimerStepperDriver::startAction);
     } else {
         // end of move
+		timer.detach();
         last_action_end = 0;
         next_action_interval = 0;
     }
