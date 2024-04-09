@@ -203,6 +203,8 @@ public:
      * Toggle step at the right time and return time until next change is needed (micros)
      */
     long nextAction(void);
+	
+	long nextActionInterval(void);
     /*
      * Optionally, call this to begin braking (and then stop) early
      * For constant speed, this is the same as stop()

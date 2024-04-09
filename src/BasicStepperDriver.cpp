@@ -385,6 +385,10 @@ long BasicStepperDriver::nextAction(void){
     return next_action_interval;
 }
 
+long BasicStepperDriver::nextActionInterval(void){
+	return next_action_interval;
+}
+
 enum BasicStepperDriver::State BasicStepperDriver::getCurrentState(void){
     enum State state;
     if (steps_remaining <= 0){
