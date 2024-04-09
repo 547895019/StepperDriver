@@ -10,6 +10,7 @@
 #ifndef STEPPER_DRIVER_BASE_H
 #define STEPPER_DRIVER_BASE_H
 #include <Arduino.h>
+#include <Ticker.h>
 
 // used internally by the library to mark unconnected pins
 #define PIN_UNCONNECTED -1
@@ -57,7 +58,7 @@ private:
     long rest;
     unsigned long last_action_end = 0;
     unsigned long next_action_interval = 0;
-
+	Ticker timer;
 protected:
     /*
      * Motor Configuration
