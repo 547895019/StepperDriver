@@ -332,6 +332,7 @@ void BasicStepperDriver::startAction(void){
         digitalWrite(step_pin, HIGH);
 		m = micros();
 		//next pulseAction
+		next_action_interval = 1;
 		timer.attach_us(step_high_min,_pulseAction_static_callback,(void*)this);
     } else {
         // end of move
