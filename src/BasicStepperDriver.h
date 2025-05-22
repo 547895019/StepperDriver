@@ -115,6 +115,7 @@ public:
      */
     BasicStepperDriver(short steps, short dir_pin, short step_pin);
     BasicStepperDriver(short steps, short dir_pin, short step_pin, short enable_pin);
+    virtual ~BasicStepperDriver(){}
     /*
      * Initialize pins, calculate timings etc
      */
